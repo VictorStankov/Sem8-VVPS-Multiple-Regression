@@ -7,6 +7,11 @@ def main():
         var_str = input('Enter the number of independent variables: ')
         try:
             var_num = int(var_str)
+
+            if var_num < 2:
+                print('Invalid number, please enter a number greater than 1.')
+                continue
+
             break
         except ValueError:
             print('Invalid number, please try again.')
