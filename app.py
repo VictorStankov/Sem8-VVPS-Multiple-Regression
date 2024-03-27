@@ -37,8 +37,8 @@ def main():
 
     roots = ge.find_roots()
 
-    for key, value in roots.items():
-        print('{0}: {1:.4f}'.format(key, value))
+    for key, value in reversed(roots.items()):
+        print(f'b{key}: {value:.5f}')
 
 
 if __name__ == '__main__':
