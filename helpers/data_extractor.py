@@ -8,18 +8,13 @@ class DataExtractor:
     def extract_data(self) -> List[List[float]]:
         output = []
         try:
-            file = open(self.path, 'r')
-            lines = file.readlines()
+            with open(self.path, 'r') as file:
+                lines = file.readlines()
+                for line in lines:
+                    output.append([float(x) for x in line.strip().split(',')])
         except FileNotFoundError:
             raise FileNotFoundError('File not found.')
-
-        try:
-            for line in lines:
-                output.append([float(x) for x in line.strip().split(',')])
-
-            file.close()
         except ValueError:
-            file.close()
             raise ValueError('Invalid data in input file.')
 
         return output
