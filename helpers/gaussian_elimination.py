@@ -23,4 +23,3 @@ class GaussianElimination:
                 row_subtract = [x * (-self.df[j][i]) for x in self.df[i]]
                 self.df[j] = [self.df[j][x] + row_subtract[x] for x in range(len(row_subtract))]
         return self.df
-
