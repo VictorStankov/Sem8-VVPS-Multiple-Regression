@@ -4,15 +4,18 @@ from tests import EquationHelper, Dataframe
 
 
 class EquationHelperTest(unittest.TestCase):
-    def test_dataframe_is_valid(self):
+    def test_dataframe_variables_match(self):
         data = Dataframe([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-        self.assertEqual(EquationHelper.dataframe_is_valid(df=data, var_num=2), True)
+        self.assertTrue(EquationHelper.dataframe_variables_match(df=data, var_num=2))
+        self.assertFalse(EquationHelper.dataframe_variables_match(df=data, var_num=3))
 
     def test_dataframe_is_invalid(self):
         data = Dataframe([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-        self.assertEqual(EquationHelper.dataframe_is_valid(df=data, var_num=3), False)
+        self.assertTrue(EquationHelper.dataframe_is_valid(df=data))
+        data[0].pop()
+        self.assertFalse(EquationHelper.dataframe_is_valid(df=data))
 
-    def test_invalid_data(self):
+    def test_generate_equation(self):
         data = Dataframe(data=[
             [1, 2, 3, 4],
             [5, 6, 7, 8],
