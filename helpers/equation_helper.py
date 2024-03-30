@@ -4,7 +4,11 @@ from models import Dataframe
 class EquationHelper:
 
     @staticmethod
-    def dataframe_is_valid(df: Dataframe, var_num: int) -> bool:
+    def dataframe_is_valid(df: Dataframe) -> bool:
+        return len(set([x for x in map(len, df.data)])) == 1
+
+    @staticmethod
+    def dataframe_variables_match(df: Dataframe, var_num: int) -> bool:
         return df.size[1] == var_num + 1
 
     @staticmethod

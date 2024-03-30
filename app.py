@@ -28,9 +28,13 @@ def main():
         exit(2)
     dataframe = Dataframe(data=data)
 
-    if not EquationHelper.dataframe_is_valid(df=dataframe, var_num=var_num):
-        print('Invalid number of variables')
+    if not EquationHelper.dataframe_is_valid(df=dataframe):
+        print('Input file has missing values.')
         exit(3)
+
+    if not EquationHelper.dataframe_variables_match(df=dataframe, var_num=var_num):
+        print('Invalid number of variables.')
+        exit(4)
 
     equation = EquationHelper.generate_equation(df=dataframe, var_num=var_num)
     ge = GaussianElimination(df=equation)
