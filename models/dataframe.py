@@ -2,6 +2,9 @@ from typing import List
 
 
 class Dataframe:
+    """
+    Class representing a dataframe structure.
+    """
     def __init__(self, data: List[List[float]]):
         self.size = (len(data), max(map(len, data)))
         self.data = data

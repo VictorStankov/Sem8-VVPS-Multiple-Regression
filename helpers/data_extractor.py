@@ -2,6 +2,9 @@ from typing import List
 
 
 class DataExtractor:
+    """
+    Static class for extracting input data from a csv file.
+    """
     @staticmethod
     def extract_data(path: str) -> List[List[float]]:
         output = []

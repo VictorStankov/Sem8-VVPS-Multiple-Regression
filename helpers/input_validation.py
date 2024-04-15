@@ -2,6 +2,9 @@ import os
 
 
 class InputValidation:
+    """
+    Helper class to validate input data.
+    """
     @staticmethod
     def is_variable_number_valid(var: str) -> bool:
         try:
