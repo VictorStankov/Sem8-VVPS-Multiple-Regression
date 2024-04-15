@@ -12,7 +12,7 @@ class InputValidationTest(unittest.TestCase):
         self.assertFalse(InputValidation.is_variable_number_valid('Invalid Input'))
 
     def test_is_path_valid(self):
-        self.assertTrue(InputValidation.is_path_valid('../input/example.csv'))
+        self.assertTrue(InputValidation.is_path_valid('../input/test2.csv'))
         self.assertFalse(InputValidation.is_path_valid('../input/missing.csv'))
 
 
