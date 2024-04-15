@@ -1,40 +1,43 @@
-from helpers import DataExtractor, EquationHelper, GaussianElimination
+from helpers import DataExtractor, EquationHelper, GaussianElimination, InputValidation
 from models import Dataframe
 
 
 def main():
+    var_num = 0
+
     while True:
         var_str = input('Enter the number of independent variables: ')
-        try:
-            var_num = int(var_str)
+        if not InputValidation.is_variable_number_valid(var=var_str):
+            print('Invalid number, please enter a whole number greater than 1.')
+            continue
 
-            if var_num < 2:
-                print('Invalid number, please enter a number greater than 1.')
-                continue
+        var_num = int(var_str)
+        break
 
-            break
-        except ValueError:
-            print('Invalid number, please try again.')
+    while True:
+        path = input('Enter the path to data file: ')
 
-    path = input('Enter the path to data file: ')
+        if not InputValidation.is_path_valid(path=path):
+            print('Input file could not be accessed. Please try again.')
+            continue
+
+        break
 
     try:
-        data = DataExtractor(path).extract_data()
-    except FileNotFoundError as e:
-        print(e)
-        exit(1)
+        data = DataExtractor.extract_data(path)
     except ValueError as e:
         print(e)
-        exit(2)
+        exit(1)
+
     dataframe = Dataframe(data=data)
 
     if not EquationHelper.dataframe_is_valid(df=dataframe):
         print('Input file has missing values.')
-        exit(3)
+        exit(2)
 
     if not EquationHelper.dataframe_variables_match(df=dataframe, var_num=var_num):
         print('Invalid number of variables.')
-        exit(4)
+        exit(3)
 
     equation = EquationHelper.generate_equation(df=dataframe, var_num=var_num)
     ge = GaussianElimination(df=equation)
