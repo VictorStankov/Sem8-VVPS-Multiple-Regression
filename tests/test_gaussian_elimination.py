@@ -5,7 +5,7 @@ from tests import GaussianElimination, Dataframe, DataExtractor, EquationHelper
 
 class GaussianEliminationTest(unittest.TestCase):
     def setUp(self):
-        data = DataExtractor('../input/test1.csv').extract_data()
+        data = DataExtractor.extract_data(path='../input/test1.csv')
         df = Dataframe(data=data)
 
         self.equation = EquationHelper.generate_equation(df=df, var_num=3)
